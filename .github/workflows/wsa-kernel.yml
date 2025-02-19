@@ -230,8 +230,7 @@ jobs:
           declare -A FILE_NAME=(["x86_64"]="bzImage" ["arm64"]="Image")
           make -j`nproc` LLVM=1 ARCH=${{ inputs.wsa_arch }} $(if [ "${{ inputs.wsa_arch }}" == "arm64" ]; then echo CROSS_COMPILE=aarch64-linux-gnu; fi) ${FILE_NAME[${{ inputs.wsa_arch }}]}
           declare -A ARCH_MAP_FILE=(["x86_64"]="x86" ["arm64"]="arm64")
-          echo "file_path=WSA-Linux-Kernel/arch/${ARCH_MAP_FILE[${{ inputs.wsa_arch }}]}/boot/${FILE_NAME[${{ inputs.arch }}]}" >> $GITHUB_ENV
-          
+          echo "file_path=WSA-Linux-Kernel/arch/${ARCH_MAP_FILE[${{ inputs.wsa_arch }}]}/boot/${FILE_NAME[${{ inputs.wsa_arch }}]}" >> $GITHUB_ENV
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
